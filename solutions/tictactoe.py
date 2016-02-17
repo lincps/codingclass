@@ -4,7 +4,6 @@ import sys
 
 YOU = 'O'
 COMP = 'X'
-EMPTY = '-'
 EMPTY_BOARD = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
 LINES = [(0, 1, 2),
          (3, 4, 5),
@@ -79,7 +78,8 @@ def check_line((a, b, c), board):
 
 
 def check_combination(sp, co1, co2, board):
-    if board[sp] == EMPTY and board[co1] == COMP and board[co2] == COMP:
+    if board[sp] != COMP \
+            and board[sp] != YOU and board[co1] == COMP and board[co2] == COMP:
         board[sp] = COMP
         return True
 
