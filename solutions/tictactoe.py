@@ -8,7 +8,7 @@ COMP = 'X'
 
 
 def clear_board():
-    return EMPTY_BOARD
+    return list(EMPTY_BOARD)
 
 
 def choose_again():
