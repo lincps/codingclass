@@ -147,6 +147,7 @@ while True:
     while True:
         move_you(board)
         if check_win(board):
+            print_board(board)
             break
         move_computer_improvement3(board)
         print "The computer has chosen!"
