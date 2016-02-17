@@ -45,6 +45,15 @@ def move_computer(board):
             break
 
 
+def move_computer_improvement1(board):
+    while True:
+        import random
+        choice = int(random.random() * 9.0)
+        if not board[choice] == YOU and not board[choice] == COMP:
+            board[choice] = COMP
+            break
+
+
 def check_squares(a, b, c):
     if a == b and b == c:
         if a == COMP:
@@ -93,7 +102,7 @@ while True:
         move_you(board)
         if check_win(board):
             break
-        move_computer(board)
+        move_computer_improvement1(board)
         print "The computer has chosen!"
         print_board(board)
         if check_win(board):
