@@ -2,9 +2,18 @@
 # ahfarrell@gmail.com
 import sys
 
-EMPTY_BOARD = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
 YOU = 'O'
 COMP = 'X'
+EMPTY = '-'
+EMPTY_BOARD = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+LINES = [(0, 1, 2),
+         (3, 4, 5),
+         (6, 7, 8),
+         (0, 3, 6),
+         (1, 4, 7),
+         (2, 5, 8),
+         (0, 4, 8),
+         (2, 4, 6)]
 
 
 def clear_board():
@@ -54,6 +63,27 @@ def move_computer_improvement1(board):
             break
 
 
+def move_computer_improvement2(board):
+    for line in LINES:
+        if check_line(line, board):
+            return
+
+    move_computer_improvement1(board)
+
+
+def check_line((a, b, c), board):
+    return \
+        check_combination(a, b, c, board) or \
+        check_combination(b, a, c, board) or \
+        check_combination(c, a, b, board)
+
+
+def check_combination(sp, co1, co2, board):
+    if board[sp] == EMPTY and board[co1] == COMP and board[co2] == COMP:
+        board[sp] = COMP
+        return True
+
+
 def check_squares(a, b, c):
     if a == b and b == c:
         if a == COMP:
@@ -67,15 +97,10 @@ def check_squares(a, b, c):
 
 
 def check_win(board):
-    return \
-        check_squares(board[0], board[1], board[2]) or \
-        check_squares(board[3], board[4], board[5]) or \
-        check_squares(board[6], board[7], board[8]) or \
-        check_squares(board[0], board[3], board[6]) or \
-        check_squares(board[1], board[4], board[7]) or \
-        check_squares(board[2], board[5], board[8]) or \
-        check_squares(board[0], board[4], board[8]) or \
-        check_squares(board[2], board[4], board[6])
+    for (a, b, c) in LINES:
+        if check_squares(board[a], board[b], board[c]):
+            return True
+    return False
 
 
 def check_continue():
@@ -102,7 +127,7 @@ while True:
         move_you(board)
         if check_win(board):
             break
-        move_computer_improvement1(board)
+        move_computer_improvement2(board)
         print "The computer has chosen!"
         print_board(board)
         if check_win(board):
