@@ -78,7 +78,7 @@ def check_continue():
         elif cont == 'no':
             return False
         else:
-            print " That is not a valid answer"
+            print "That is not a valid answer"
 
 
 print "Let's play the computer at tic-tac-toe"
