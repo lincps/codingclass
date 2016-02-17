@@ -63,23 +63,39 @@ def move_computer_improvement1(board):
 
 
 def move_computer_improvement2(board):
-    for line in LINES:
-        if check_line(line, board):
-            return
+    if move_computer_try(board, COMP):
+        return
 
     move_computer_improvement1(board)
 
 
-def check_line((a, b, c), board):
+def move_computer_improvement3(board):
+    if move_computer_try(board, COMP):
+        return
+
+    if move_computer_try(board, YOU):
+        return
+
+    move_computer_improvement1(board)
+
+
+def move_computer_try(board, piece):
+    for line in LINES:
+        if check_line(line, board, piece):
+            return True
+    return False
+
+
+def check_line((a, b, c), board, piece):
     return \
-        check_combination(a, b, c, board) or \
-        check_combination(b, a, c, board) or \
-        check_combination(c, a, b, board)
+        check_combination(a, b, c, board, piece) or \
+        check_combination(b, a, c, board, piece) or \
+        check_combination(c, a, b, board, piece)
 
 
-def check_combination(sp, co1, co2, board):
+def check_combination(sp, co1, co2, board, piece):
     if board[sp] != COMP \
-            and board[sp] != YOU and board[co1] == COMP and board[co2] == COMP:
+            and board[sp] != YOU and board[co1] == piece and board[co2] == piece:
         board[sp] = COMP
         return True
 
@@ -100,6 +116,11 @@ def check_win(board):
     for (a, b, c) in LINES:
         if check_squares(board[a], board[b], board[c]):
             return True
+
+    if not list(set(board).intersection(set(EMPTY_BOARD))):
+        print "It is a tie."
+        return True
+
     return False
 
 
@@ -127,7 +148,7 @@ while True:
         move_you(board)
         if check_win(board):
             break
-        move_computer_improvement2(board)
+        move_computer_improvement3(board)
         print "The computer has chosen!"
         print_board(board)
         if check_win(board):
