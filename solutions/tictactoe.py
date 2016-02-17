@@ -88,14 +88,14 @@ print "You can start"
 
 while True:
     board = clear_board()
+    print_board(board)
     while True:
-        print_board(board)
         move_you(board)
         if check_win(board):
             break
+        move_computer(board)
         print "The computer has chosen!"
         print_board(board)
-        move_computer(board)
         if check_win(board):
             break
     if not check_continue():
