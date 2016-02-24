@@ -31,6 +31,7 @@ def pick_number():
 
 colour_choice = pick_colour()
 number1_choice = pick_number()
+print("And one more...")
 number2_choice = pick_number()
 
 if colour_choice == 'red' and number1_choice == '1' and number2_choice == '8':
