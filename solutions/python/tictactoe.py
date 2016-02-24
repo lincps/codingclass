@@ -34,7 +34,7 @@ def print_board(board):
 def move_you(board):
     while True:
         print("Pick a number between 0 and 8 that is free:")
-        choice_ = input().strip()
+        choice_ = input()
         if choice_ in EMPTY_BOARD:
             choice = int(choice_)
             if board[choice] == YOU or board[choice] == COMP:
@@ -128,7 +128,7 @@ def check_win(board):
 def check_continue():
     while True:
         print("Would you like to play again? Enter: yes or no")
-        cont = input().strip()
+        cont = input()
         if cont == 'yes':
             return True
         elif cont == 'no':

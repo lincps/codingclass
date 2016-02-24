@@ -1,0 +1,28 @@
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
+
+rl.on('line', function(line){
+    console.log(line);
+})
+
+
+function pickColour() {
+  while True{
+    rl.on("pick a colour (red, blue, green, or orange):", function(colour){
+       console.log(colour)
+    })
+    
+    
+    colour = input().strip()
+
+        if colour in ('red', 'blue', 'green', 'orange'):
+            print("you have selected: " + colour)
+            return colour
+        else:
+            print("you have not selected a valid colour: " + colour)
+  }
+}

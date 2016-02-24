@@ -7,7 +7,7 @@ from __future__ import print_function
 def pick_colour():
     while True:
         print("pick a colour (red, blue, green, or orange):")
-        colour = input().strip()
+        colour = input()
 
         if colour in ('red', 'blue', 'green', 'orange'):
             print("you have selected: " + colour)
@@ -17,10 +17,9 @@ def pick_colour():
 
 
 def pick_number():
-    need_input = True
-    while need_input:
+    while True:
         print("pick a number (between 1 and 8):")
-        number = input().strip()
+        number = input()
 
         if number in ('1', '2', '3', '4', '5', '6', '7', '8'):
             print("you have selected: " + number)
